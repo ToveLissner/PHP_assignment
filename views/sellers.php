@@ -14,7 +14,7 @@ $sellers = Seller::getAllSellers();
 ?>
 
 <?php
-// ska det gär verkligen ligga här? //
+// ska det gär verkligen ligga här? 
 $sellers = null;
 
 if (isset($_GET['sort']) && $_GET['sort'] === 'alphabetical') {
@@ -33,7 +33,7 @@ if (isset($_GET['sort']) && $_GET['sort'] === 'alphabetical') {
             <strong>Telefon:</strong> <?php echo $seller->getPhoneNumber(); ?><br>
             <a href="sellerDetails.php?id=<?php echo $seller->getSellerId(); ?>">Mer information</a>
             <a href="editSeller.php?id=<?php echo $seller->getSellerId(); ?>">Redigera</a>
-            <a href="deleteSeller.php?id=<?php echo $seller->getSellerId(); ?>">Ta bort</a>
+            <a href="deleteSeller.php?id=<?php echo $seller->getSellerId(); ?>">Ta bort</a> 
         </li>
     <?php endforeach; ?>
 </ul>

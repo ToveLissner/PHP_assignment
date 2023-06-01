@@ -1,5 +1,7 @@
 <?php
 
+require_once 'Item.php';
+
 class Seller {
     private $id;
     private $firstname;     
@@ -163,5 +165,35 @@ class Seller {
         
             return null;
         }
-        
+
+    public function getItems() {
+        require '../database/connection.php'; // Anslut till databasen
+
+        try {
+            $sql = "SELECT * FROM items
+            INNER JOIN sellers ON items.seller_id = sellers.id
+            WHERE sellers.id = ?";
+            $statement = $pdo->prepare($sql);
+            $statement->execute([$this->id]);
+            $itemsData = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+            $items = [];
+            var_dump( $items );
+
+            foreach ($itemsData as $itemData) {
+                // Skapa en instans av Item-klassen med hämtade data och lägg till i listan
+                $item = new Item($itemData['id'], $itemData['description'], $itemData['price'], $itemData['date'], $itemData['sold'], $itemData['date_sold'], $itemData['seller_id']);
+                $items[] = $item;
+            }
+
+            return $items;
+        } catch (PDOException $e) {
+            // Hantera fel
+            echo "Fel vid hämtning av plagg: " . $e->getMessage();
+        }
+
+        return null; // Returnera null om plagg inte hittades
     }
+}
+
+

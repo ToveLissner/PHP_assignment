@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Vidare till en annan sida - kan jag använda samma för alla? - fråga om det 
             header('Location: ../views/updateSuccess.php');
-            exit();
+            exit;
         } else {
             echo "Säljaren hittades inte.";         // fråga lite kring felhantering 
         }
@@ -38,4 +38,6 @@ header('Location: ../index.php');
 exit;
 
 ?>
+
+
 
