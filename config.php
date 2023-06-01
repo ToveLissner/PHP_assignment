@@ -1,5 +1,7 @@
 <?php
 
+// fixa denna sida senare
+
 $db_config = [
     'host' => 'localhost',
     'db' => 'php_slutprojekt_secondhand',

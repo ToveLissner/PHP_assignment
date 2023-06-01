@@ -2,8 +2,7 @@
 require '../database/connection.php';
 include '../models/Seller.php';
 
-// Kontrollera om POST-data har skickats 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {             // ska det vara 3 stycken "="?????
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {            
     // Kontrollera om säljar-ID har skickats
     if (isset($_POST['id'])) {
         // Hämta säljar-ID från POST-data
@@ -22,19 +21,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {             // ska det vara 3 stycke
             // Uppdatera säljaren i databasen
             $seller->updateSeller();
 
-            // Vidarebefordra till en bekräftelsesida eller annan önskad destination
+            // Vidare till en annan sida - kan jag använda samma för alla? - fråga om det 
             header('Location: ../views/updateSuccess.php');
             exit();
         } else {
-            // Säljaren hittades inte, hantera felet på lämpligt sätt
-            echo "Säljaren hittades inte.";
+            echo "Säljaren hittades inte.";         // fråga lite kring felhantering 
         }
     } else {
-        // Säljar-ID saknas i POST-data, hantera felet på lämpligt sätt
         echo "Säljar-ID saknas.";
     }
 } else {
-    // HTTP GET-anrop används, hantera det på lämpligt sätt
     echo "Otillåtet anrop.";
 }
 

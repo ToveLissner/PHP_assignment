@@ -4,12 +4,13 @@ class Item {
     private $id;
     private $description;     
     private $price;
-    private $date;
-    private $sold;
-    private $date_sold;
+    private $date;          
+    private $sold;          // datatyp?
+    private $date_sold;     // datatyp?
     private $seller_id;
  
-    public function __construct(string $description, float $price, $date, $sold, $date_sold, int $seller_id){   
+    public function __construct(?int $id, string $description, float $price, $date, $sold, $date_sold, int $seller_id){   
+        $this->id=$id;
         $this->description=$description;
         $this->price=$price;
         $this->date=$date;
@@ -26,7 +27,7 @@ class Item {
         return $this->description; 
     }
 
-    public function getPrice(){
+    public function getPrice():float{
         return $this->price; 
     }
 
@@ -42,8 +43,12 @@ class Item {
         return $this->date_sold; 
     }
 
-    public function getSellerIdFromItem(){
+    public function getSellerIdFromItem():int{
         return $this->seller_id; 
+    }
+
+    public function setItemid(int $id): void{
+        $this->id=$id;
     }
 
     public function setDescription($description){
@@ -70,9 +75,10 @@ class Item {
         $this->seller_id =  $seller_id;  
     }
     
-        // Metoder för att hantera CRUD-funktionalitet för items
+        // Metoder för att hantera CRUD
+
         public function saveItem() {
-            require 'database/connection.php'; // Anslut till databasen
+            require '../database/connection.php'; // Anslut till databasen
     
             try {
                 $sql = "INSERT INTO items (description, price, date, sold, date_sold, seller_id) VALUES (?, ?, ?, ?, ?, ?)";
@@ -85,7 +91,7 @@ class Item {
         }
     
         public function updateItem() {
-            require 'database/connection.php'; // Anslut till databasen
+            require '../database/connection.php'; // Anslut till databasen
     
             try {
                 $sql = "UPDATE items SET description = ?, price = ?, date = ?, sold = ?, date_sold = ?, seller_id = ? WHERE id = ?";
@@ -98,7 +104,7 @@ class Item {
         }
     
         public function deleteItem() {
-            require 'database/connection.php'; // Anslut till databasen
+            require '../database/connection.php'; // Anslut till databasen
     
             try {
                 $sql = "DELETE FROM items WHERE id = ?";
@@ -111,7 +117,7 @@ class Item {
         }
     
         public static function getItemById($id) {
-            require 'database/connection.php'; // Anslut till databasen
+            require '../database/connection.php'; // Anslut till databasen
     
             try {
                 $sql = "SELECT * FROM items WHERE id = ?";
@@ -139,17 +145,18 @@ class Item {
     
             return null; // Returnera null om item inte hittades
         }
-    
+
         public static function getAllItems() {
-            require 'database/connection.php'; // Anslut till databasen
+            require '../database/connection.php'; // Anslut till databasen
     
             try {
                 $sql = "SELECT * FROM items";
                 $statement = $pdo->prepare($sql);
                 $statement->execute();
+
                 $itemsData = $statement->fetchAll(PDO::FETCH_ASSOC);
-    
                 $items = [];
+
                 foreach ($itemsData as $itemData) {
                     // Skapa en instans av Item-klassen för varje item
                     $item = new Item(
@@ -161,16 +168,22 @@ class Item {
                         $itemData['date_sold'],
                         $itemData['seller_id']
                     );
+                    $item->setItemId($itemData['id']);
                     $items[] = $item;
                 }
+
+                var_dump($items);
     
                 return $items;
             } catch (PDOException $e) {
                 // Hantera fel
                 echo "Fel vid hämtning av items: " . $e->getMessage();
             }
+
+            var_dump($items);
     
-            return []; // Returnera en tom array om inga items hittades
+            return NULL; // Returnera en tom array om inga items hittades
         }
+        
     }
     

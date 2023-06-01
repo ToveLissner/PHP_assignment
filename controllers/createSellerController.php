@@ -1,7 +1,7 @@
 <?php
 require '../database/connection.php';
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if(isset($_POST['firstname'],$_POST['lastname'],$_POST['phone'])){
         $firstname=filter_var($_POST['firstname'],FILTER_SANITIZE_SPECIAL_CHARS); 

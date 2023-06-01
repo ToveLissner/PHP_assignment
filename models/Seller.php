@@ -7,7 +7,7 @@ class Seller {
     private $phone;
  
     public function __construct(?int $id, string $firstname, string $lastname, string $phone){  
-        $this->id = $id; 
+        $this->id=$id; 
         $this->firstname=$firstname;
         $this->lastname=$lastname;
         $this->phone=$phone;
@@ -45,7 +45,7 @@ class Seller {
         $this->phone = $phone;  
     }
     
-        // Metoder för att hantera CRUD-funktionalitet för säljare
+        // Metoder för att hantera CRUD 
 
         public function saveSeller() {
             require '../database/connection.php'; // Anslut till databasen
@@ -136,24 +136,32 @@ class Seller {
         
             return null; // Returnera null om säljare inte hittades
         }
+
+        // funktion för att sortera på förnamn // 
+
+        public static function getAllSellersAlphabetical() {
+            require '../database/connection.php';
+        
+            try {
+                $sql = "SELECT * FROM sellers ORDER BY firstname ASC";
+                $statement = $pdo->prepare($sql);
+                $statement->execute();
+        
+                $sellersData = $statement->fetchAll(PDO::FETCH_ASSOC);
+                $sellers = [];
+        
+                foreach ($sellersData as $sellerData) {
+                    $seller = new Seller($sellerData['id'], $sellerData['firstname'], $sellerData['lastname'], $sellerData['phone']);
+                    $seller->setId($sellerData['id']);
+                    $sellers[] = $seller;
+                }
+        
+                return $sellers;
+            } catch (PDOException $e) {
+                echo "Fel vid hämtning av säljare: " . $e->getMessage();
+            }
+        
+            return null;
+        }
+        
     }
-
-
-
-
-
-
-
-
-    
-
-
-
-    
-
-
-
-
-
-
-
