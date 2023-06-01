@@ -2,8 +2,8 @@
 require '../database/connection.php';
 include '../models/Seller.php';
 
-// Kontrollera om POST-data har skickats
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+// Kontrollera om POST-data har skickats 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {             // ska det vara 3 stycken "="?????
     // Kontrollera om säljar-ID har skickats
     if (isset($_POST['id'])) {
         // Hämta säljar-ID från POST-data
