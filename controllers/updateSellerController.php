@@ -21,8 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Uppdatera säljaren i databasen
             $seller->updateSeller();
 
-            // Vidare till en annan sida - kan jag använda samma för alla? - fråga om det 
-            header('Location: ../views/updateSuccess.php');
+            header('Location: ../views/sellerDetails.php?id=' . $sellerId);
             exit;
         } else {
             echo "Säljaren hittades inte.";         // fråga lite kring felhantering 
@@ -34,10 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo "Otillåtet anrop.";
 }
 
-header('Location: ../index.php');
-exit;
-
 ?>
+
 
 
 

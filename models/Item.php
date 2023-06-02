@@ -5,8 +5,8 @@ class Item {
     private $description;     
     private $price;
     private $date;          
-    private $sold;          // datatyp?
-    private $date_sold;     // datatyp?
+    private $sold;          
+    private $date_sold;     
     private $seller_id;
  
     public function __construct(?int $id, string $description, float $price, $date, $sold, $date_sold, int $seller_id){   
@@ -47,11 +47,11 @@ class Item {
         return $this->seller_id; 
     }
 
-    public function setItemid(int $id): void{
+    public function setItemId(int $id): void{
         $this->id=$id;
     }
 
-    public function setDescription($description){
+    public function setDescription(string $description){
         $this->description = $description;  
     }
 
@@ -65,11 +65,11 @@ class Item {
 
     public function setSoldStatus($sold){
         $this->sold = $sold;  
-    }
+    } 
 
-    public function setSoldDate($date_sold){
-        $this->date_sold =  $date_sold;  
-    }
+    // public function setDateSold($date_sold){
+    //     $this->date_sold =  $date_sold;  
+    // }
 
     public function setSellerIdFromItem($seller_id){
         $this->seller_id =  $seller_id;  
@@ -91,7 +91,7 @@ class Item {
         }
     
         public function updateItem() {
-            require '../database/connection.php'; // Anslut till databasen
+            require '../database/connection.php'; // Anslut till databasen 
     
             try {
                 $sql = "UPDATE items SET description = ?, price = ?, date = ?, sold = ?, date_sold = ?, seller_id = ? WHERE id = ?";
@@ -101,8 +101,9 @@ class Item {
                 // Hantera fel
                 echo "Fel vid uppdatering av item: " . $e->getMessage();
             }
+
         }
-    
+
         public function deleteItem() {
             require '../database/connection.php'; // Anslut till databasen
     
@@ -171,19 +172,16 @@ class Item {
                     $item->setItemId($itemData['id']);
                     $items[] = $item;
                 }
-
-                var_dump($items);
     
                 return $items;
             } catch (PDOException $e) {
                 // Hantera fel
                 echo "Fel vid hämtning av items: " . $e->getMessage();
             }
-
-            var_dump($items);
     
             return NULL; // Returnera en tom array om inga items hittades
         }
         
-    }
+}
+
     

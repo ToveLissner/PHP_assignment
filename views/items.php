@@ -18,6 +18,10 @@ $items = Item::getAllItems();
             <strong>ID:</strong> <?php echo $item->getItemId(); ?><br>
             <strong>Beskrivning:</strong> <?php echo $item->getDescription(); ?><br>
             <strong>Pris:</strong> <?php echo $item->getPrice(); ?><br>
+            <strong>Inkom:</strong> <?php echo $item->getdate(); ?><br>
+            <strong>Status:</strong> <?php echo $item->getSold(); ?><br>
+            <strong>Försäljningsdatum:</strong> <?php echo $item->getDateSold(); ?><br>
+            <strong>FörsäljarId:</strong> <?php echo $item->getSellerIdFromItem(); ?><br>
             <a href="editItem.php?id=<?php echo $item->getItemId(); ?>">Redigera</a>
             <a href="deleteItem.php?id=<?php echo $item->getItemId(); ?>">Ta bort</a>
         </li>

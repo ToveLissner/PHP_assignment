@@ -178,7 +178,6 @@ class Seller {
             $itemsData = $statement->fetchAll(PDO::FETCH_ASSOC);
 
             $items = [];
-            var_dump( $items );
 
             foreach ($itemsData as $itemData) {
                 // Skapa en instans av Item-klassen med hämtade data och lägg till i listan
