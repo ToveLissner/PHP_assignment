@@ -34,9 +34,6 @@ var_dump($item)
         <label for="sold">Såld:</label>
         <input type="text" name="sold" id="sold" value="<?php echo $item->getSold(); ?>" required><br>
 
-        <!-- <label for="date_sold">Försäljningsdatum:</label>
-        <input type="text" name="date_sold" id="date_sold" value="<?php echo $item->getDateSold(); ?>"> <br> -->
-
         <label for="seller_id">FörsäljarId:</label>
         <input type="text" name="seller_id" id="seller_id" value="<?php echo $item->getSellerIdFromItem(); ?>" required><br>
 

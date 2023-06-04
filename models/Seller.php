@@ -181,7 +181,15 @@ class Seller {
 
             foreach ($itemsData as $itemData) {
                 // Skapa en instans av Item-klassen med hämtade data och lägg till i listan
-                $item = new Item($itemData['id'], $itemData['description'], $itemData['price'], $itemData['date'], $itemData['sold'], $itemData['date_sold'], $itemData['seller_id']);
+                $item = new Item(
+                    $itemData['id'],
+                    $itemData['description'],
+                    $itemData['price'],
+                    $itemData['date'],
+                    $itemData['sold'],
+                    $itemData['date_sold'],
+                    $itemData['seller_id']
+                );
                 $items[] = $item;
             }
 
@@ -193,6 +201,8 @@ class Seller {
 
         return null; // Returnera null om plagg inte hittades
     }
+    
+
 }
 
 

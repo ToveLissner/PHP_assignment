@@ -6,6 +6,7 @@ error_reporting(E_ALL);
 require '../database/connection.php';
 include '../partials/header.php';
 include '../models/Seller.php';
+include_once '../models/Item.php';
 
 ?>
 
@@ -22,27 +23,32 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     if ($seller) {
         $items = $seller->getItems();
 
-        ?>
+?>
         <h3>Säljare: <?php echo $seller->getFirstname() . ' ' . $seller->getLastname(); ?></h3>
         <p>Telefon: <?php echo $seller->getPhoneNumber(); ?></p>
 
-        <?php         // Antal inlämnade plagg
+        <?php
+        // Antal plagg som är ute till försäljning 
         $submittedItems = array_filter($items, function($item) {
-            return !$item->getSold();
+            return $item->getSold() == 0;
         });
 
         $numberOfSubmittedItems = count($submittedItems);
 
-        echo "<p>Antal inlämnade plagg: $numberOfSubmittedItems</p>";
-
         // Antal sålda plagg
         $soldItems = array_filter($items, function($item) {
-            return $item->getSold();
+            return $item->getSold() == 1;
         });
 
         $numberOfSoldItems = count($soldItems);
 
+        // Totalt antal inlämnade plagg
+        $totalItems = $numberOfSubmittedItems + $numberOfSoldItems;
+
+        echo "<p>Antal plagg ute för försäljning: $numberOfSubmittedItems</p>";
         echo "<p>Antal sålda plagg: $numberOfSoldItems</p>";
+        echo "<p>Totalt antal inlämnade plagg: $totalItems</p>";
+
 
         // Total försäljningssumma
         $totalSales = 0;
@@ -54,25 +60,39 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 
         ?>
 
-<h4>Alla plagg som säljaren lämnat in:</h4>
-<?php if (count($items) > 0) : ?>
-    <ul>
-        <?php foreach ($items as $item) : ?>
-            <li>
-                <?php echo $item->getDescription() . ' (' . $item->getPrice() . ' kr)'; ?>
-            </li>
-        <?php endforeach; ?>
-    </ul>
-<?php else : ?>
-    <p>Inga plagg tillgängliga.</p>
-<?php endif; ?>
+        <h4>Alla plagg som säljaren lämnat in:</h4>
+        <?php if (count($items) > 0) : var_dump($items);
 
-    <?php } else { ?>
-        <p>Säljaren kunde inte hittas.</p>
-    <?php }
+        $itemsFromItem = Item::getAllItems();
+        ?>
+
+        <ul>
+            <?php foreach ($itemsFromItem as $item) : ?>
+                <?php if ($item->getSellerIdFromItem() == $sellerId) : ?>
+                <li>
+                    <strong>ID:</strong> <?php echo $item->getItemId(); ?><br>
+                    <strong>Beskrivning:</strong> <?php echo $item->getDescription(); ?><br>
+                    <strong>Pris:</strong> <?php echo $item->getPrice(); ?><br>
+                    <strong>Inkom:</strong> <?php echo $item->getdate(); ?><br>
+                    <strong>Status:</strong> <?php echo $item->getSold() ? 'Såld' : 'Ej såld'; ?><br>
+                    <strong>Försäljningsdatum:</strong> <?php echo $item->getDateSold(); ?><br>
+                    <strong>FörsäljarId:</strong> <?php echo $item->getSellerIdFromItem(); ?><br>
+                    <a href="editItem.php?id=<?php echo $item->getItemId(); ?>">Redigera</a>
+                </li>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </ul>
+
+    <?php else : ?>
+        <p>Inga plagg tillgängliga.</p>
+    <?php endif; ?>
+
+<?php } else { ?>
+    <p>Säljaren kunde inte hittas.</p>
+<?php }
 } else { ?>
     <p>Ogiltigt säljar-ID.</p>
-<?php } 
+<?php }
 
 if (isset($_GET['id'])) {
     $sellerId = $_GET['id'];
@@ -83,15 +103,12 @@ if (isset($_GET['id'])) {
 
 <h2>Lägg till nytt objekt</h2>
 
-<form action="../controllers/createItemController.php" method="POST" >
+<form action="../controllers/createItemController.php?id=<?php echo $sellerId; ?>" method="POST">
     <label for="description">Beskrivning:</label>
     <input type="text" name="description" id="description" required><br>
 
     <label for="price">Pris:</label>
     <input type="text" name="price" id="price" required><br>
-
-    <!-- <label for="seller_id">Säljare:</label>
-    <input type="text" name="seller_id" id="seller_id" required><br> -->
 
     <input type="hidden" name="seller_id" value="<?php echo $sellerId; ?>">
 

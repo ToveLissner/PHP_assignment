@@ -23,7 +23,6 @@ $items = Item::getAllItems();
             <strong>Försäljningsdatum:</strong> <?php echo $item->getDateSold(); ?><br>
             <strong>FörsäljarId:</strong> <?php echo $item->getSellerIdFromItem(); ?><br>
             <a href="editItem.php?id=<?php echo $item->getItemId(); ?>">Redigera</a>
-            <a href="deleteItem.php?id=<?php echo $item->getItemId(); ?>">Ta bort</a>
         </li>
     <?php endforeach; ?>
 </ul>
