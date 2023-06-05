@@ -4,7 +4,7 @@ include '../partials/header.php';
 
 <h2>Lägg till ny säljare</h2>
 
-<form action="../controllers/createSellerController.php" method="POST" >
+<form class="container" action="../controllers/createSellerController.php" method="POST" >
     <label for="firstname">Förnamn:</label>
     <input type="text" name="firstname" id="firstname" required><br>
 

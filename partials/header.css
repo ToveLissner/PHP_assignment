@@ -1,0 +1,130 @@
+body {
+    background-color: #f8f8f8;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #333333;
+    padding: 20px;
+    color: #ffffff;
+}
+
+header h1 {
+    font-size: 32px;
+    margin: 0;
+}
+
+header a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+/* Anpassa länkfärgen när muspekaren är över länken */
+header a:hover {
+    color: #ff66b3;
+}
+
+h2 {
+    margin-left: 20px;
+    color: #333333;
+}
+
+h3 {
+    margin-left: 20px;
+    color: #333333;
+}
+
+p {
+    margin-left: 20px;
+    color: #333333;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+ul {
+    margin-left: 20px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    margin-left: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    margin-left: 20px;
+}
+
+.ulContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.liContainer {
+    background-color: #ffffff;
+    width: 250px;
+    padding: 20px;
+    padding-bottom: 10px;
+}
+
+/* Anpassa färgerna för formuläret */
+form {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 50%;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #555555;
+}
+
+input[type="text"],
+button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #ff3399;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+button a {
+    color: #ffffff;
+}
+
+button:hover {
+    background-color: #ff66b3;
+}
+
+.smallButton {
+    padding: 6px;
+    background-color: #333333;
+}
+
+.largeButton {
+    background-color: #333333;
+    color: #ffffff;
+}
+
+.largeButton:hover {
+    color: #ff66b3;
+}

@@ -17,7 +17,7 @@ if (isset($_GET['id'])) {
 <h2>Redigera säljare</h2>
 
 <?php if ($seller): ?>
-    <form action="../controllers/updateSellerController.php" method="POST">
+    <form class="container" action="../controllers/updateSellerController.php" method="POST">
         <input type="hidden" name="id" value="<?php echo $seller->getSellerId(); ?>">
         <label for="firstname">Förnamn:</label>
         <input type="text" name="firstname" id="firstname" value="<?php echo $seller->getFirstname(); ?>" required><br>

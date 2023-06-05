@@ -6,8 +6,8 @@ include '../models/Seller.php';
 
 <h2>Säljare</h2>
 
-<button><a href="createSeller.php">Lägg till ny säljare</a></button>
-<button><a href="sellers.php?sort=alphabetical">Sortera på förnamn</a></button>
+<button class="container largeButton"><a href="createSeller.php">Lägg till ny säljare</a></button>
+<button class="largeButton"><a href="sellers.php?sort=alphabetical">Sortera på förnamn</a></button>
 
 <?php
 $sellers = Seller::getAllSellers();
@@ -24,16 +24,16 @@ if (isset($_GET['sort']) && $_GET['sort'] === 'alphabetical') {
 }
 ?>
 
-<ul>
+<ul class="container ulContainer">
     <?php foreach ($sellers as $seller): ?>
-        <li>
+        <li class="liContainer">
             <strong>FörsäljarId:</strong> <?php echo $seller->getSellerId(); ?><br>
             <!-- <strong>Förnamn:</strong> <?php echo $seller->getFirstname(); ?><br>
             <strong>Efternamn:</strong> <?php echo $seller->getLastname(); ?><br> -->
             <strong>Namn:</strong> <?php echo $seller->getFirstname() . ' ' . $seller->getLastname(); ?><br>
             <strong>Telefon:</strong> <?php echo $seller->getPhoneNumber(); ?><br>
-            <a href="sellerDetails.php?id=<?php echo $seller->getSellerId(); ?>">Mer information</a>
-            <a href="editSeller.php?id=<?php echo $seller->getSellerId(); ?>">Redigera</a>
+            <button class="smallButton"><a href="sellerDetails.php?id=<?php echo $seller->getSellerId(); ?>">Mer information</a></button>
+            <button class="smallButton"><a href="editSeller.php?id=<?php echo $seller->getSellerId(); ?>">Redigera</a></button>
         </li>
     <?php endforeach; ?>
 </ul>

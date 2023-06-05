@@ -65,7 +65,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         $itemsFromItem = Item::getAllItems();
         ?>
 
-        <ul>
+        <ul class="container">
             <?php foreach ($itemsFromItem as $item) : ?>
                 <?php if ($item->getSellerIdFromItem() == $sellerId) : ?>
                 <li>
@@ -102,7 +102,7 @@ if (isset($_GET['id'])) {
 
 <h3>Lägg till nytt objekt</h3>
 
-<form action="../controllers/createItemController.php?id=<?php echo $sellerId; ?>" method="POST">
+<form class="container" action="../controllers/createItemController.php?id=<?php echo $sellerId; ?>" method="POST">
     <label for="description">Beskrivning:</label>
     <input type="text" name="description" id="description" required><br>
 
@@ -117,7 +117,7 @@ if (isset($_GET['id'])) {
 <h3>Redigera säljare</h3>
 
 <?php if ($seller): ?>
-    <form action="../controllers/updateSellerController.php" method="POST">
+    <form class="container" action="../controllers/updateSellerController.php" method="POST">
         <input type="hidden" name="id" value="<?php echo $seller->getSellerId(); ?>">
         <label for="firstname">Förnamn:</label>
         <input type="text" name="firstname" id="firstname" value="<?php echo $seller->getFirstname(); ?>" required><br>

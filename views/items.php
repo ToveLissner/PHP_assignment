@@ -10,9 +10,9 @@ include '../models/Item.php';
 $items = Item::getAllItems();
 ?>
 
-<ul>
+<ul class="container ulContainer">
     <?php foreach ($items as $item): ?>
-        <li>
+        <li class="liContainer">
             <strong>ProduktId:</strong> <?php echo $item->getItemId(); ?><br>
             <strong>Beskrivning:</strong> <?php echo $item->getDescription(); ?><br>
             <strong>Pris:</strong> <?php echo $item->getPrice(); ?><br>
@@ -20,7 +20,7 @@ $items = Item::getAllItems();
             <strong>Status:</strong> <?php echo $item->getSold(); ?><br>
             <strong>Försäljningsdatum:</strong> <?php echo $item->getDateSold(); ?><br>
             <strong>FörsäljarId:</strong> <?php echo $item->getSellerIdFromItem(); ?><br>
-            <a href="editItem.php?id=<?php echo $item->getItemId(); ?>">Redigera</a>
+            <button class="smallButton"> <a href="editItem.php?id=<?php echo $item->getItemId(); ?>">Redigera</a> </button>
         </li>
     <?php endforeach; ?>
 </ul>

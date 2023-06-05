@@ -13,7 +13,7 @@ if (isset($_GET['id'])) {
 <h2>Redigera objekt: <?php echo $item->getItemId();?></h2>
 
 <?php if ($item): ?>
-    <form action="../controllers/updateItemController.php" method="POST">
+    <form class="container" action="../controllers/updateItemController.php" method="POST">
         <input type="hidden" name="id" value="<?php echo $item->getItemId(); ?>">
         <label for="description">Beskrivning:</label>
         <input type="text" name="description" id="description" value="<?php echo $item->getDescription(); ?>" required><br>
