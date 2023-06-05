@@ -13,6 +13,7 @@ include_once '../models/Item.php';
 <h2>Detaljerad information</h2>
 
 <?php
+
 // Kontrollera att det finns en giltig säljar-ID i URL:en
 if (isset($_GET['id']) && !empty($_GET['id'])) {
     $sellerId = $_GET['id'];

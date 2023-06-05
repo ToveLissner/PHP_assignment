@@ -10,12 +10,12 @@ include '../models/Item.php';
 $items = Item::getAllItems();
 ?>
 
-<ul class="container ulContainer">
+<ul class="ulContainer">
     <?php foreach ($items as $item): ?>
         <li class="liContainer">
             <strong>ProduktId:</strong> <?php echo $item->getItemId(); ?><br>
             <strong>Beskrivning:</strong> <?php echo $item->getDescription(); ?><br>
-            <strong>Pris:</strong> <?php echo $item->getPrice(); ?><br>
+            <strong>Pris:</strong> <?php echo $item->getPrice(); ?> kr<br>
             <strong>Inkom:</strong> <?php echo $item->getdate(); ?><br>
             <strong>Status:</strong> <?php echo $item->getSold(); ?><br>
             <strong>Försäljningsdatum:</strong> <?php echo $item->getDateSold(); ?><br>

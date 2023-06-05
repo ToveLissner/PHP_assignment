@@ -67,12 +67,14 @@ li {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 20px;
+    width: 100%;
 }
 
 .liContainer {
     background-color: #ffffff;
-    width: 250px;
+    width: 20%;
     padding: 20px;
     padding-bottom: 10px;
 }
