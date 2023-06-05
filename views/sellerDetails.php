@@ -59,7 +59,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 
         ?>
 
-        <h4>Alla objekt som <?php echo $seller->getFirstname() . ' ' . $seller->getLastname(); ?> lämnat in </h4>
+        <h3>Alla objekt som <?php echo $seller->getFirstname() . ' ' . $seller->getLastname(); ?> lämnat in </h3>
         <?php if (count($items) > 0) : ;
 
         $itemsFromItem = Item::getAllItems();

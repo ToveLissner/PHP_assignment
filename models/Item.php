@@ -78,47 +78,44 @@ class Item {
         // Metoder för att hantera CRUD
 
         public function saveItem() {
-            require '../database/connection.php'; // Anslut till databasen
+            require '../database/connection.php'; 
     
             try {
                 $sql = "INSERT INTO items (description, price, date, sold, date_sold, seller_id) VALUES (?, ?, ?, ?, ?, ?)";
                 $statement = $pdo->prepare($sql);
                 $statement->execute([$this->description, $this->price, $this->date, $this->sold, $this->date_sold, $this->seller_id]);
             } catch (PDOException $e) {
-                // Hantera fel
                 echo "Fel vid sparande av item: " . $e->getMessage();
             }
         }
     
         public function updateItem() {
-            require '../database/connection.php'; // Anslut till databasen 
+            require '../database/connection.php'; 
     
             try {
                 $sql = "UPDATE items SET description = ?, price = ?, date = ?, sold = ?, date_sold = ?, seller_id = ? WHERE id = ?";
                 $statement = $pdo->prepare($sql);
                 $statement->execute([$this->description, $this->price, $this->date, $this->sold, $this->date_sold, $this->seller_id, $this->id]);
             } catch (PDOException $e) {
-                // Hantera fel
                 echo "Fel vid uppdatering av item: " . $e->getMessage();
             }
 
         }
 
         public function deleteItem() {
-            require '../database/connection.php'; // Anslut till databasen
+            require '../database/connection.php'; 
     
             try {
                 $sql = "DELETE FROM items WHERE id = ?";
                 $statement = $pdo->prepare($sql);
                 $statement->execute([$this->id]);
             } catch (PDOException $e) {
-                // Hantera fel
                 echo "Fel vid borttagning av item: " . $e->getMessage();
             }
         }
     
         public static function getItemById($id) {
-            require '../database/connection.php'; // Anslut till databasen
+            require '../database/connection.php'; 
     
             try {
                 $sql = "SELECT * FROM items WHERE id = ?";
@@ -127,7 +124,6 @@ class Item {
                 $itemData = $statement->fetch(PDO::FETCH_ASSOC);
     
                 if ($itemData) {
-                    // Skapa en instans av Item-klassen med hämtade data
                     $item = new Item(
                         $itemData['id'],
                         $itemData['description'],
@@ -140,15 +136,14 @@ class Item {
                     return $item;
                 }
             } catch (PDOException $e) {
-                // Hantera fel
                 echo "Fel vid hämtning av item: " . $e->getMessage();
             }
     
-            return null; // Returnera null om item inte hittades
+            return null; 
         }
 
         public static function getAllItems() {
-            require '../database/connection.php'; // Anslut till databasen
+            require '../database/connection.php'; 
     
             try {
                 $sql = "SELECT * FROM items";
@@ -159,7 +154,6 @@ class Item {
                 $items = [];
 
                 foreach ($itemsData as $itemData) {
-                    // Skapa en instans av Item-klassen för varje item
                     $item = new Item(
                         $itemData['id'],
                         $itemData['description'],
@@ -175,11 +169,10 @@ class Item {
     
                 return $items;
             } catch (PDOException $e) {
-                // Hantera fel
                 echo "Fel vid hämtning av items: " . $e->getMessage();
             }
     
-            return NULL; // Returnera en tom array om inga items hittades
+            return NULL; 
         }
         
 }

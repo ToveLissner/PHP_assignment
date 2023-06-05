@@ -18,10 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $item->setSoldStatus(true);
             }
 
-            // Spara ändringarna i databasen
             $item->updateItem();
 
-            // Hämta säljar-ID från plagget
             $sellerId = $item->getSellerIdFromItem();
 
             header("Location: ../views/sellerDetails.php?id=" . $sellerId);

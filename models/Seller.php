@@ -50,46 +50,43 @@ class Seller {
         // Metoder för att hantera CRUD 
 
         public function saveSeller() {
-            require '../database/connection.php'; // Anslut till databasen
+            require '../database/connection.php'; 
     
             try {
                 $sql = "INSERT INTO sellers (firstname, lastname, phone) VALUES (?, ?, ?)";
                 $statement = $pdo->prepare($sql);
                 $statement->execute([$this->firstname, $this->lastname, $this->phone]);
             } catch (PDOException $e) {
-                // Hantera fel
                 echo "Fel vid sparande av säljare: " . $e->getMessage();
             }
         }
     
         public function updateSeller() {
-            require '../database/connection.php'; // Anslut till databasen
+            require '../database/connection.php'; 
     
             try {
                 $sql = "UPDATE sellers SET firstname = ?, lastname = ?, phone = ? WHERE id = ?";
                 $statement = $pdo->prepare($sql);
                 $statement->execute([$this->firstname, $this->lastname, $this->phone, $this->id]);
             } catch (PDOException $e) {
-                // Hantera fel
                 echo "Fel vid uppdatering av säljare: " . $e->getMessage();
             }
         }
     
         public function deleteSeller() {
-            require '../database/connection.php'; // Anslut till databasen
+            require '../database/connection.php'; 
     
             try {
                 $sql = "DELETE FROM sellers WHERE id = ?";
                 $statement = $pdo->prepare($sql);
                 $statement->execute([$this->id]);
             } catch (PDOException $e) {
-                // Hantera fel
                 echo "Fel vid borttagning av säljare: " . $e->getMessage();
             }
         }
     
         public static function getSellerById($id) {
-            require '../database/connection.php'; // Anslut till databasen
+            require '../database/connection.php'; 
     
             try {
                 $sql = "SELECT * FROM sellers WHERE id = ?";
@@ -98,22 +95,19 @@ class Seller {
                 $sellerData = $statement->fetch(PDO::FETCH_ASSOC);
     
                 if ($sellerData) {
-                    // Skapa en instans av Seller-klassen med hämtade data
                     $seller = new Seller($sellerData['id'], $sellerData['firstname'], $sellerData['lastname'], $sellerData['phone']);
 
-                    // $seller = new Seller($sellerData['firstname'], $sellerData['lastname'], $sellerData['phone'], $sellerData['id']);
                     return $seller;
                 }
             } catch (PDOException $e) {
-                // Hantera fel
                 echo "Fel vid hämtning av säljare: " . $e->getMessage();
             }
     
-            return null; // Returnera null om säljare inte hittades
+            return null; 
         }
     
         public static function getAllSellers() {
-            require '../database/connection.php'; // Anslut till databasen
+            require '../database/connection.php'; 
         
             try {
                 $sql = "SELECT * FROM sellers";
@@ -124,7 +118,6 @@ class Seller {
                 $sellers = [];
         
                 foreach ($sellersData as $sellerData) {
-                    // Skapa en instans av Seller-klassen med hämtade data och lägg till i listan
                     $seller = new Seller($sellerData['id'], $sellerData['firstname'], $sellerData['lastname'], $sellerData['phone']);
                     $seller->setId($sellerData['id']);
                     $sellers[] = $seller;
@@ -132,14 +125,11 @@ class Seller {
         
                 return $sellers;
             } catch (PDOException $e) {
-                // Hantera fel
                 echo "Fel vid hämtning av säljare: " . $e->getMessage();
             }
         
-            return null; // Returnera null om säljare inte hittades
+            return null; 
         }
-
-        // funktion för att sortera på förnamn // 
 
         public static function getAllSellersAlphabetical() {
             require '../database/connection.php';
@@ -167,7 +157,7 @@ class Seller {
         }
 
     public function getItems() {
-        require '../database/connection.php'; // Anslut till databasen
+        require '../database/connection.php'; 
 
         try {
             $sql = "SELECT * FROM items
@@ -180,7 +170,6 @@ class Seller {
             $items = [];
 
             foreach ($itemsData as $itemData) {
-                // Skapa en instans av Item-klassen med hämtade data och lägg till i listan
                 $item = new Item(
                     $itemData['id'],
                     $itemData['description'],
@@ -195,11 +184,10 @@ class Seller {
 
             return $items;
         } catch (PDOException $e) {
-            // Hantera fel
             echo "Fel vid hämtning av plagg: " . $e->getMessage();
         }
 
-        return null; // Returnera null om plagg inte hittades
+        return null; 
     }
     
 

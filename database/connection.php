@@ -14,23 +14,11 @@ try {
 echo "Anslutningen misslyckades: " . $e->getMessage();
 }
 
-// om jag ska använda den där config-filen 
+// 'timezone' => 'Europe/Stockholm' // ska jag ha med timezone?
 
-// require_once '../config.php';
+?>
 
-// $dsn = "mysql:host={$db_config['host']};dbname={$db_config['db']};charset=UTF8";
 
-// try {
-//     $pdo = new PDO($dsn, $db_config['user'], $db_config['password']);
-//     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-//     $pdo->exec("SET time_zone = '{$db_config['timezone']}'");
-// } catch (PDOException $e) {
-//     echo "Anslutningen misslyckades. Vänligen kontakta administratören för support.";
-//     // header("Location: error_page.php"); // Omdirigera till en generisk felmeddelandesida
-//     exit();
-// }
-
-// ?>
 
 
 
