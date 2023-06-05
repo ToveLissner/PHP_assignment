@@ -36,7 +36,7 @@ class Item {
     }
 
     public function getSold(){
-        return $this->sold; 
+        return $this->sold == 1; 
     }
 
     public function getDateSold(){
@@ -63,13 +63,13 @@ class Item {
         $this->date = $date;  
     }
 
-    public function setSoldStatus($sold){
-        $this->sold = $sold;  
-    } 
+    public function setDateSold($date_sold){
+        $this->date_sold = $date_sold;  
+    }    
 
-    // public function setDateSold($date_sold){
-    //     $this->date_sold =  $date_sold;  
-    // }
+    public function setSoldStatus($sold){
+        $this->sold = $sold ? 1 : 0; 
+    } 
 
     public function setSellerIdFromItem($seller_id){
         $this->seller_id =  $seller_id;  

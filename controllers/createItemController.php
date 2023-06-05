@@ -10,7 +10,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if(isset($_POST['description'],$_POST['price'])){
         $description=filter_var($_POST['description'],FILTER_SANITIZE_SPECIAL_CHARS); 
         $price=filter_var($_POST['price'],FILTER_SANITIZE_NUMBER_FLOAT); 
-        // $seller_id=filter_var($_POST['seller_id'],FILTER_SANITIZE_NUMBER_INT); 
 
         if(isset($_GET['id'])) {
             $seller_id = $_GET['id'];
@@ -20,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             header('Location: ../views/sellerDetails.php?id=' . $seller_id);
             exit;
-            
+
         }   else {
             echo "Säljar-ID saknas.";
         }

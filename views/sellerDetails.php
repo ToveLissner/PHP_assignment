@@ -24,31 +24,30 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         $items = $seller->getItems();
 
 ?>
-        <h3>Säljare: <?php echo $seller->getFirstname() . ' ' . $seller->getLastname(); ?></h3>
+        <p>Säljare: <?php echo $seller->getFirstname() . ' ' . $seller->getLastname(); ?><p>
         <p>Telefon: <?php echo $seller->getPhoneNumber(); ?></p>
 
         <?php
-        // Antal plagg som är ute till försäljning 
+        // Antal objekt som är ute till försäljning 
         $submittedItems = array_filter($items, function($item) {
             return $item->getSold() == 0;
         });
 
         $numberOfSubmittedItems = count($submittedItems);
 
-        // Antal sålda plagg
+        // Antal sålda objekt
         $soldItems = array_filter($items, function($item) {
             return $item->getSold() == 1;
         });
 
         $numberOfSoldItems = count($soldItems);
 
-        // Totalt antal inlämnade plagg
+        // Totalt antal inlämnade objekt
         $totalItems = $numberOfSubmittedItems + $numberOfSoldItems;
 
-        echo "<p>Antal plagg ute för försäljning: $numberOfSubmittedItems</p>";
-        echo "<p>Antal sålda plagg: $numberOfSoldItems</p>";
-        echo "<p>Totalt antal inlämnade plagg: $totalItems</p>";
-
+        echo "<p>Antal objekt till försäljning: $numberOfSubmittedItems st</p>";
+        echo "<p>Antal sålda objekt: $numberOfSoldItems st</p>";
+        echo "<p>Totalt antal inlämnade objekt: $totalItems st</p>";
 
         // Total försäljningssumma
         $totalSales = 0;
@@ -60,8 +59,8 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 
         ?>
 
-        <h4>Alla plagg som säljaren lämnat in:</h4>
-        <?php if (count($items) > 0) : var_dump($items);
+        <h4>Alla objekt som <?php echo $seller->getFirstname() . ' ' . $seller->getLastname(); ?> lämnat in </h4>
+        <?php if (count($items) > 0) : ;
 
         $itemsFromItem = Item::getAllItems();
         ?>
@@ -84,7 +83,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         </ul>
 
     <?php else : ?>
-        <p>Inga plagg tillgängliga.</p>
+        <p>Inga objekt tillgängliga.</p>
     <?php endif; ?>
 
 <?php } else { ?>
@@ -101,7 +100,7 @@ if (isset($_GET['id'])) {
 
 ?>
 
-<h2>Lägg till nytt objekt</h2>
+<h3>Lägg till nytt objekt</h3>
 
 <form action="../controllers/createItemController.php?id=<?php echo $sellerId; ?>" method="POST">
     <label for="description">Beskrivning:</label>
@@ -115,7 +114,7 @@ if (isset($_GET['id'])) {
     <button type="submit">Lägg till</button>
 </form>
 
-<h2>Redigera säljare</h2>
+<h3>Redigera säljare</h3>
 
 <?php if ($seller): ?>
     <form action="../controllers/updateSellerController.php" method="POST">

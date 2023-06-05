@@ -8,4 +8,4 @@
 </head>
 <body>
 
-<h1>Secondhand</h1>
+<a href="http://localhost/slutprojekt/index.php"><h1>A Second Love</h1></a>

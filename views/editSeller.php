@@ -1,5 +1,4 @@
 <?php
-
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -8,13 +7,11 @@ require '../database/connection.php';
 include '../partials/header.php';
 include '../models/Seller.php';
 
-// Kontrollera om det finns en säljar-ID i URL:en
 if (isset($_GET['id'])) {
     $sellerId = $_GET['id'];
     $seller = Seller::getSellerById($sellerId);
 }
 
-var_dump($seller)
 ?>
 
 <h2>Redigera säljare</h2>

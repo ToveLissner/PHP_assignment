@@ -16,13 +16,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $item->setDescription($_POST['description']);
             $item->setPrice($_POST['price']);
             $item->setDate($_POST['date']);
-            $item->setSoldStatus($_POST['sold']);
-            // $item->setDateSold($_POST['date_sold']);
+            $item->setSoldStatus(isset($_POST['sold']));
             $item->setSellerIdFromItem($_POST['seller_id']);
+
+            // if (!$item->getSold()) {
+            //     $sql = "UPDATE items SET date_sold = NULL WHERE id = ?";
+            //     $statement = $pdo->prepare($sql);
+            //     $statement->execute([$item->getItemId()]);
+            // }
+
+            if (!$item->getSold()) {
+                $item->setDateSold(null);
+            }
 
             $item->updateItem();
 
-            header('Location: ../views/editItem.php?id=' . $itemId);    
+            $seller_id = $item->getSellerIdFromItem();
+
+            header('Location: ../views/sellerDetails.php?id=' . $seller_id);    
             exit;
         } else {
             echo "Hittades hittades inte.";         // fråga lite kring felhantering 
@@ -33,5 +44,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 } else {
     echo "Otillåtet anrop.";
 }
-
-?>

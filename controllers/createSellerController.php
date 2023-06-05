@@ -13,7 +13,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $statement->execute([$firstname,$lastname,$phone]);  
     }
 
-    header('Location: ../index.php');
+    $sellerId = $pdo->lastInsertId(); // Hämta det senaste ID:t som genererades
+
+    header('Location: ../views/sellerCreated.php?id=' . $sellerId);
+
     exit;
 }
 ?>

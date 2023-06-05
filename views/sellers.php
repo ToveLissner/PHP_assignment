@@ -27,9 +27,10 @@ if (isset($_GET['sort']) && $_GET['sort'] === 'alphabetical') {
 <ul>
     <?php foreach ($sellers as $seller): ?>
         <li>
-            <strong>ID:</strong> <?php echo $seller->getSellerId(); ?><br>
-            <strong>Förnamn:</strong> <?php echo $seller->getFirstname(); ?><br>
-            <strong>Efternamn:</strong> <?php echo $seller->getLastname(); ?><br>
+            <strong>FörsäljarId:</strong> <?php echo $seller->getSellerId(); ?><br>
+            <!-- <strong>Förnamn:</strong> <?php echo $seller->getFirstname(); ?><br>
+            <strong>Efternamn:</strong> <?php echo $seller->getLastname(); ?><br> -->
+            <strong>Namn:</strong> <?php echo $seller->getFirstname() . ' ' . $seller->getLastname(); ?><br>
             <strong>Telefon:</strong> <?php echo $seller->getPhoneNumber(); ?><br>
             <a href="sellerDetails.php?id=<?php echo $seller->getSellerId(); ?>">Mer information</a>
             <a href="editSeller.php?id=<?php echo $seller->getSellerId(); ?>">Redigera</a>
