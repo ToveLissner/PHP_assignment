@@ -4,28 +4,35 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 require '../database/connection.php';
+include '../models/Seller.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if (isset($_GET['id'])) {
+    $sellerId = $_GET['id'];
+    $seller = Seller::getSellerById($sellerId);
 
-    if(isset($_POST['description'],$_POST['price'])){
-        $description=filter_var($_POST['description'],FILTER_SANITIZE_SPECIAL_CHARS); 
-        $price=filter_var($_POST['price'],FILTER_SANITIZE_NUMBER_FLOAT); 
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // Logik för POST-begäran här
+        if (isset($_POST['description'], $_POST['price'])) {
+            $description = filter_var($_POST['description'], FILTER_SANITIZE_SPECIAL_CHARS);
+            $price = filter_var($_POST['price'], FILTER_SANITIZE_NUMBER_FLOAT);
 
-        if(isset($_GET['id'])) {
-            $seller_id = $_GET['id'];
-            $sql = "INSERT INTO items (description, price, seller_id) VALUES (?,?,?)"; 
+            $sql = "INSERT INTO items (description, price, seller_id) VALUES (?,?,?)";
             $statement = $pdo->prepare($sql);
-            $statement->execute([$description, $price, $seller_id]);
-            
-            header('Location: ../views/sellerDetails.php?id=' . $seller_id);
-            exit;
+            $statement->execute([$description, $price, $sellerId]);
 
-        }   else {
-            echo "Säljar-ID saknas.";
+            header('Location: ../views/sellerDetails.php?id=' . $sellerId);
+            exit;
+        } else {
+            echo "Beskrivning och pris saknas.";
         }
     }
-
+} else {
+    echo "Säljar-ID saknas.";
 }
+?>
+
+
+
 
 
 

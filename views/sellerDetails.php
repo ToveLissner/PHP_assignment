@@ -92,14 +92,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 <?php }
 } else { ?>
     <p>Ogiltigt säljar-ID.</p>
-<?php }
-
-if (isset($_GET['id'])) {
-    $sellerId = $_GET['id'];
-    $seller = Seller::getSellerById($sellerId);
-}
-
-?>
+<?php }?>
 
 <h3>Lägg till nytt objekt</h3>
 
