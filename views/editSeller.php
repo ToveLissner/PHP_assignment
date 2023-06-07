@@ -16,7 +16,7 @@ if (isset($_GET['id'])) {
 
 <h2>Redigera säljare</h2>
 
-<?php if ($seller): ?>
+<?php if ($seller){ ?>
     <form class="container" action="../controllers/updateSellerController.php" method="POST">
         <input type="hidden" name="id" value="<?php echo $seller->getSellerId(); ?>">
         <label for="firstname">Förnamn:</label>
@@ -30,8 +30,8 @@ if (isset($_GET['id'])) {
 
         <button type="submit">Spara ändringar</button>
     </form>
-<?php else: ?>
+<?php } else {?>
     <p>Kunde inte hitta säljaren.</p>
-<?php endif; ?>
+<?php } ?>
 
 <?php include '../partials/footer.php'; ?>

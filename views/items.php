@@ -11,7 +11,7 @@ $items = Item::getAllItems();
 ?>
 
 <ul class="ulContainerLarge">
-    <?php foreach ($items as $item): ?>
+    <?php foreach ($items as $item) { ?>
         <li class="liContainerLarge">
             <strong>ProduktId:</strong> <?php echo $item->getItemId(); ?><br>
             <strong>Beskrivning:</strong> <?php echo $item->getDescription(); ?><br>
@@ -24,7 +24,7 @@ $items = Item::getAllItems();
             <strong>FörsäljarId:</strong> <?php echo $item->getSellerIdFromItem(); ?><br>
             <button class="smallButton"> <a href="editItem.php?id=<?php echo $item->getItemId(); ?>">Redigera</a> </button>
         </li>
-    <?php endforeach; ?>
+    <?php } ?>
 </ul>
 
 <?php include '../partials/footer.php'; ?>
