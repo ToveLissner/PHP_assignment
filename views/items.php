@@ -10,9 +10,9 @@ include '../models/Item.php';
 $items = Item::getAllItems();
 ?>
 
-<ul class="ulContainer">
+<ul class="ulContainerLarge">
     <?php foreach ($items as $item): ?>
-        <li class="liContainer">
+        <li class="liContainerLarge">
             <strong>ProduktId:</strong> <?php echo $item->getItemId(); ?><br>
             <strong>Beskrivning:</strong> <?php echo $item->getDescription(); ?><br>
             <strong>Pris:</strong> <?php echo $item->getPrice(); ?> kr<br>

@@ -24,9 +24,9 @@ if (isset($_GET['sort']) && $_GET['sort'] === 'alphabetical') {
 }
 ?>
 
-<ul class="ulContainer">
+<ul class="ulContainerLarge">
     <?php foreach ($sellers as $seller): ?>
-        <li class="liContainer">
+        <li class="liContainerSeller">
             <strong>FörsäljarId:</strong> <?php echo $seller->getSellerId(); ?><br>
             <!-- <strong>Förnamn:</strong> <?php echo $seller->getFirstname(); ?><br>
             <strong>Efternamn:</strong> <?php echo $seller->getLastname(); ?><br> -->

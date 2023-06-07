@@ -1,6 +1,7 @@
 <?php
-
-// den här filen har jag ett gjort än - måste flytta över logiken hit
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 require '../database/connection.php';
 include '../models/Seller.php';
@@ -16,14 +17,15 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     if ($seller) {
         $items = $seller->getItems();
 
-        // Antal objekt som är ute till försäljning 
-        $submittedItems = array_filter($items, function($item) {
-            return $item->getSold() == 0;
-        });
+        // Gör de beräkningar och datalogik som behövs
+            // Antal objekt som är ute till försäljning 
+                $submittedItems = array_filter($items, function($item) {
+                return $item->getSold() == 0;
+                });
 
-        $numberOfSubmittedItems = count($submittedItems);
+                $numberOfSubmittedItems = count($submittedItems);
 
-        // Antal sålda objekt
+                        // Antal sålda objekt
         $soldItems = array_filter($items, function($item) {
             return $item->getSold() == 1;
         });
@@ -38,7 +40,23 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         foreach ($soldItems as $item) {
             $totalSales += $item->getPrice();
         }
-    }
-}
 
+        // hämtar alla items från items-tabellen
+        $itemsFromItem = Item::getAllItems();
+
+    } else {
+        echo "Säljaren kunde inte hittas.";
+    }
+} else {
+    echo "Ogiltigt säljar-ID.";
+}
 ?>
+
+
+
+        
+
+
+
+
+
