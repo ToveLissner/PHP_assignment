@@ -106,7 +106,7 @@ li {
 
 .liContainerSmall {
     background-color: #ffffff;
-    width: 200px;
+    width: 240px;
     padding: 20px;
     padding-bottom: 10px;
     border-radius: 5px;
@@ -139,7 +139,6 @@ form input[type="text"] {
 form input[type="text"]:focus {
     outline-color: #ff99cc;
 }
-
 
 label {
     display: block;

@@ -65,19 +65,25 @@ include '../partials/header.php';
         <p>Kunde inte hitta säljaren.</p>
     <?php endif; ?>
 
+    
+
     <h3>Alla objekt som <?php echo $seller->getFirstname() . ' ' . $seller->getLastname(); ?> lämnat in </h3>
     <ul class="container ulContainerSmall">
         <?php foreach ($itemsFromItem as $item) : ?>
+            <?php if ($item->getSellerIdFromItem() === $seller->getSellerId()) : ?>
             <li class="liContainerSmall">
                 <strong>ID:</strong> <?php echo $item->getItemId(); ?><br>
                 <strong>Beskrivning:</strong> <?php echo $item->getDescription(); ?><br>
-                <strong>Pris:</strong> <?php echo $item->getPrice(); ?><br>
-                <strong>Inkom:</strong> <?php echo $item->getdate(); ?><br>
+                <strong>Pris:</strong> <?php echo $item->getPrice(); ?> kr<br>
+                <strong>Inkom:</strong> <?php echo date('Y-m-d', strtotime($item->getdate())); ?><br>
                 <strong>Status:</strong> <?php echo $item->getSold() ? 'Såld' : 'Ej såld'; ?><br>
-                <strong>Försäljningsdatum:</strong> <?php echo $item->getDateSold(); ?><br>
+                <?php if ($item->getDateSold() !== null): ?>
+            <strong>Försäljningsdatum:</strong> <?php echo $item->getDateSold(); ?><br>
+            <?php endif; ?>
                 <strong>FörsäljarId:</strong> <?php echo $item->getSellerIdFromItem(); ?><br>
                 <button class="smallButtonPink"><a href="editItem.php?id=<?php echo $item->getItemId(); ?>">Redigera</a></button>
             </li>
+            <?php endif; ?>
         <?php endforeach; ?>
     </ul>
 

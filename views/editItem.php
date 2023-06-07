@@ -22,7 +22,7 @@ if (isset($_GET['id'])) {
         <input type="text" name="price" id="price" value="<?php echo $item->getPrice(); ?>" required><br>
 
         <label for="date">Inkom:</label>
-        <input type="text" name="date" id="date" value="<?php echo $item->getDate(); ?>" ><br>  
+        <input type="text" name="date" id="date" value="<?php echo date('Y-m-d', strtotime($item->getdate())); ?>" ><br>  
 
         <label for="sold">Såld:</label>
         <input type="checkbox" name="sold" id="sold" <?php if ($item->getSold()) echo "checked"; ?>>
