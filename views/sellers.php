@@ -25,7 +25,7 @@ if (isset($_GET['sort']) && $_GET['sort'] === 'alphabetical') {
 ?>
 
 <ul class="ulContainerLarge">
-    <?php foreach ($sellers as $seller): ?>
+    <?php foreach ($sellers as $seller) { ?>
         <li class="liContainerSeller">
             <strong>FörsäljarId:</strong> <?php echo $seller->getSellerId(); ?><br>
             <strong>Namn:</strong> <?php echo $seller->getFirstname() . ' ' . $seller->getLastname(); ?><br>
@@ -33,7 +33,7 @@ if (isset($_GET['sort']) && $_GET['sort'] === 'alphabetical') {
             <button class="smallButton"><a href="sellerDetails.php?id=<?php echo $seller->getSellerId(); ?>">Mer information</a></button>
             <button class="smallButton"><a href="editSeller.php?id=<?php echo $seller->getSellerId(); ?>">Redigera</a></button>
         </li>
-    <?php endforeach; ?>
+    <?php } ?>
 </ul>
 
 <?php include '../partials/footer.php'; ?>
