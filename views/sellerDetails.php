@@ -3,72 +3,25 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-require '../database/connection.php';
 include '../partials/header.php';
-include '../models/Seller.php';
-include_once '../models/Item.php';
-
+include '../controllers/sellerDetailsController.php';
 ?>
 
-<h2>Detaljerad information</h2>
+<h2> Detaljerad information </h2>
 
-<?php
+<?php if (isset($seller)) : ?>
+    <p>Säljare: <?php echo $seller->getFirstname() . ' ' . $seller->getLastname(); ?></p>
+    <p>Telefon: <?php echo $seller->getPhoneNumber(); ?></p>
 
-// Kontrollera att det finns en giltig säljar-ID i URL:en
-if (isset($_GET['id']) && !empty($_GET['id'])) {
-    $sellerId = $_GET['id'];
-
-    // Hämta säljaren från databasen baserat på ID
-    $seller = Seller::getSellerById($sellerId);
-
-    if ($seller) {
-        $items = $seller->getItems();
-
-?>
-        <p>Säljare: <?php echo $seller->getFirstname() . ' ' . $seller->getLastname(); ?><p>
-        <p>Telefon: <?php echo $seller->getPhoneNumber(); ?></p>
-
-        <?php
-        // Antal objekt som är ute till försäljning 
-        $submittedItems = array_filter($items, function($item) {
-            return $item->getSold() == 0;
-        });
-
-        $numberOfSubmittedItems = count($submittedItems);
-
-        // Antal sålda objekt
-        $soldItems = array_filter($items, function($item) {
-            return $item->getSold() == 1;
-        });
-
-        $numberOfSoldItems = count($soldItems);
-
-        // Totalt antal inlämnade objekt
-        $totalItems = $numberOfSubmittedItems + $numberOfSoldItems;
-
-        echo "<p>Antal objekt till försäljning: $numberOfSubmittedItems st</p>";
-        echo "<p>Antal sålda objekt: $numberOfSoldItems st</p>";
-        echo "<p>Totalt antal inlämnade objekt: $totalItems st</p>";
-
-        // Total försäljningssumma
-        $totalSales = 0;
-        foreach ($soldItems as $item) {
-            $totalSales += $item->getPrice();
-        }
-
-        echo "<p>Total försäljningssumma: $totalSales kr</p>";
-
-        ?>
+    <?php if ($items) : ?>
+        <p>Antal objekt till försäljning: <?php echo $numberOfSubmittedItems; ?> st</p>
+        <p>Antal sålda objekt: <?php echo $numberOfSoldItems; ?> st</p>
+        <p>Totalt antal inlämnade objekt: <?php echo $totalItems; ?> st</p>
+        <p>Total försäljningssumma: <?php echo $totalSales; ?> kr</p>
 
         <h3>Alla objekt som <?php echo $seller->getFirstname() . ' ' . $seller->getLastname(); ?> lämnat in </h3>
-        <?php if (count($items) > 0) : ;
-
-        $itemsFromItem = Item::getAllItems();
-        ?>
-
         <ul class="container">
             <?php foreach ($itemsFromItem as $item) : ?>
-                <?php if ($item->getSellerIdFromItem() == $sellerId) : ?>
                 <li>
                     <strong>ID:</strong> <?php echo $item->getItemId(); ?><br>
                     <strong>Beskrivning:</strong> <?php echo $item->getDescription(); ?><br>
@@ -79,7 +32,6 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
                     <strong>FörsäljarId:</strong> <?php echo $item->getSellerIdFromItem(); ?><br>
                     <a href="editItem.php?id=<?php echo $item->getItemId(); ?>">Redigera</a>
                 </li>
-                <?php endif; ?>
             <?php endforeach; ?>
         </ul>
 
@@ -87,12 +39,9 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         <p>Inga objekt tillgängliga.</p>
     <?php endif; ?>
 
-<?php } else { ?>
+<?php else : ?>
     <p>Säljaren kunde inte hittas.</p>
-<?php }
-} else { ?>
-    <p>Ogiltigt säljar-ID.</p>
-<?php }?>
+<?php endif; ?>
 
 <h3>Lägg till nytt objekt</h3>
 
