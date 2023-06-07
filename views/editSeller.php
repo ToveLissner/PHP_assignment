@@ -1,8 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 require '../database/connection.php';
 include '../partials/header.php';
 include '../models/Seller.php';
@@ -11,7 +7,6 @@ if (isset($_GET['id'])) {
     $sellerId = $_GET['id'];
     $seller = Seller::getSellerById($sellerId);
 }
-
 ?>
 
 <h2>Redigera säljare</h2>

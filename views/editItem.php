@@ -7,7 +7,6 @@ if (isset($_GET['id'])) {
     $itemId = $_GET['id'];
     $item = Item::getItemById($itemId);
 }
-
 ?>
 
 <h2>Redigera objekt: <?php echo $item->getItemId();?></h2>
