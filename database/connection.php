@@ -17,13 +17,3 @@ echo "Anslutningen misslyckades: " . $e->getMessage();
 // 'timezone' => 'Europe/Stockholm' // ska jag ha med timezone?
 
 ?>
-
-
-
-
-
-
-
-
-
-
