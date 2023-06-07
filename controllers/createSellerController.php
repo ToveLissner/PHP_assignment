@@ -10,15 +10,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
         $sql="INSERT INTO sellers (firstname, lastname, phone) VALUES (?,?,?)"; 
         $statement=$pdo->prepare($sql);
-        $statement->execute([$firstname,$lastname,$phone]);  
+
+        try {
+            $statement->execute([$firstname, $lastname, $phone]);
+
+            $sellerId = $pdo->lastInsertId(); 
+
+            header('Location: ../views/sellerCreated.php?id=' . $sellerId);
+            exit;
+        } catch (PDOException $e) {
+            echo "Fel vid skapande av säljare: " . $e->getMessage();
+        }
     }
-
-    $sellerId = $pdo->lastInsertId(); // Hämta det senaste ID:t som genererades
-
-    header('Location: ../views/sellerCreated.php?id=' . $sellerId);
-
-    exit;
 }
 ?>
-
-

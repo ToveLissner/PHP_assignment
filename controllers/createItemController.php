@@ -11,7 +11,6 @@ if (isset($_GET['id'])) {
     $seller = Seller::getSellerById($sellerId);
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        // Logik för POST-begäran här
         if (isset($_POST['description'], $_POST['price'])) {
             $description = filter_var($_POST['description'], FILTER_SANITIZE_SPECIAL_CHARS);
             $price = filter_var($_POST['price'], FILTER_SANITIZE_NUMBER_FLOAT);

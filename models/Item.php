@@ -75,11 +75,8 @@ class Item {
         $this->seller_id =  $seller_id;  
     }
     
-        // Metoder för att hantera CRUD
-
         public function saveItem() {
             require '../database/connection.php'; 
-    
             try {
                 $sql = "INSERT INTO items (description, price, date, sold, date_sold, seller_id) VALUES (?, ?, ?, ?, ?, ?)";
                 $statement = $pdo->prepare($sql);

@@ -14,7 +14,6 @@ $sellers = Seller::getAllSellers();
 ?>
 
 <?php
-// ska det gär verkligen ligga här? 
 $sellers = null;
 
 if (isset($_GET['sort']) && $_GET['sort'] === 'alphabetical') {
