@@ -80,7 +80,6 @@ include '../partials/header.php';
                 <?php if ($item->getDateSold() !== null): ?>
             <strong>Försäljningsdatum:</strong> <?php echo $item->getDateSold(); ?><br>
             <?php endif; ?>
-                <strong>FörsäljarId:</strong> <?php echo $item->getSellerIdFromItem(); ?><br>
                 <button class="smallButtonPink"><a href="editItem.php?id=<?php echo $item->getItemId(); ?>">Redigera</a></button>
             </li>
             <?php endif; ?>
