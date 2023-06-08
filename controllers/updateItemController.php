@@ -1,11 +1,4 @@
 <?php
-
-// kom ihåg att ta bort det högst upp innan jag lämnar in (gäller fler filer)
-
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 require '../database/connection.php';
 include '../models/Item.php';
 
