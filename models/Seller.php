@@ -46,8 +46,6 @@ class Seller {
         $this->phone = $phone;  
     }
     
-        // Metoder för att hantera CRUD 
-
         public function saveSeller() {
             require '../database/connection.php'; 
     
