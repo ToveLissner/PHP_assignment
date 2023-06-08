@@ -4,20 +4,22 @@ Slutprojekt i PHP
 
 ## Funktioner
 
+
+
 ## Installation
 
 1. Klona projektet från GitHub.
 2. Installera nödvändiga beroenden.
-3. Konfigurera inställningar i `database/config.php`. Se till att ange korrekta anslutningsuppgifter för din databas.
-4. Exportera databasen från phpMyAdmin och importera den till din lokala databas. Du kan använda kommandoraden eller ett databasverktyg som MySQL Workbench för att importera databasfilen. Se till att skapa en databas med samma namn som den som anges i `database/config.php`.
-5. Starta projektet.
+3. För att använda projektet, se till att ha rätt inställningar i `database/config.php` med korrekt information om databasen
+4. Starta projektet.
+
+Observera att databasfilen redan är inkluderad i projektet och kommer att användas automatiskt.
 
 ## Användning
 
-Beskriv hur man använder och testar projektet.
+Gå in på `http://localhost/slutprojekt/index.php` för att komma till startsidan  
 
 ## Kontakt
 
-Tove Lissner 
 tove.lissner@medieinstitutet.se
 
