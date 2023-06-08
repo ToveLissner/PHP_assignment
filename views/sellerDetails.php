@@ -63,7 +63,7 @@ class SellerDetailsView extends BaseEditSellerView {
                 <button class="smallButtonPink"><a href="editItem.php?id=<?php echo $item->getItemId(); ?>">Redigera</a></button>
             </li>
             <?php } ?>
-        <?php } ?>
+        <?php }  ?>
     </ul>
 
 <?php } else { ?>
