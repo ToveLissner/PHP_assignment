@@ -1,25 +1,22 @@
 # A Second Love
 
-Slutprojekt i PHP
+Final assignment in PHP
 
-## Funktioner
-
-
+## Features
 
 ## Installation
 
-1. Klona projektet från GitHub.
-2. Installera nödvändiga beroenden.
-3. För att använda projektet, se till att ha rätt inställningar i `database/config.php` med korrekt information om databasen
-4. Starta projektet.
+1. Clone the project from GitHub.
+2. Install the required dependencies.
+3. To use the project, make sure to have the correct settings in `database/config.php` with accurate information about the database.
+4. Start the project.
 
-Observera att databasfilen redan är inkluderad i projektet och kommer att användas automatiskt.
+Please note that the database file is already included in the project and will be used automatically.
 
-## Användning
+## Usage
 
-Gå in på `http://localhost/slutprojekt/index.php` för att komma till startsidan  
+Visit `http://localhost/slutprojekt/index.php` to access the homepage.
 
-## Kontakt
+## Contact
 
 tove.lissner@medieinstitutet.se
-
