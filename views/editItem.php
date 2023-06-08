@@ -35,4 +35,4 @@ if (isset($_GET['id'])) {
     <p>Kunde inte hitta objektet.</p>
 <?php } ?>
 
-<?php include '../partials/footer.php'; ?>
+<?php include '../partials/footer.php'; ?> 

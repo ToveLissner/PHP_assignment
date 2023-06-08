@@ -1,6 +1,6 @@
 <?php
 require '../database/connection.php';
-include '../models/Seller.php';
+include_once '../models/Seller.php';
 include_once '../models/Item.php';
 
 if (isset($_GET['id']) && !empty($_GET['id'])) {

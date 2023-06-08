@@ -1,7 +1,6 @@
 <?php
 require '../database/connection.php';
-include '../partials/header.php';
-include '../models/Seller.php';
+require 'BaseEditSellerView.php';
 
 if (isset($_GET['id'])) {
     $sellerId = $_GET['id'];
@@ -9,24 +8,16 @@ if (isset($_GET['id'])) {
 }
 ?>
 
-<h2>Redigera säljare</h2>
+<?php class EditSellerView extends BaseEditSellerView {
+    public function render() {
+        include '../partials/header.php';
+        echo "<h2>Redigera säljare</h2>";
+        parent::render();
+        include '../partials/footer.php';
+    }
+}
 
-<?php if ($seller){ ?>
-    <form class="container" action="../controllers/updateSellerController.php" method="POST">
-        <input type="hidden" name="id" value="<?php echo $seller->getSellerId(); ?>">
-        <label for="firstname">Förnamn:</label>
-        <input type="text" name="firstname" id="firstname" value="<?php echo $seller->getFirstname(); ?>" required><br>
+$view = new EditSellerView($_GET['id']);
+$view->render();
 
-        <label for="lastname">Efternamn:</label>
-        <input type="text" name="lastname" id="lastname" value="<?php echo $seller->getLastname(); ?>" required><br>
-
-        <label for="phone">Telefon:</label>
-        <input type="text" name="phone" id="phone" value="<?php echo $seller->getPhoneNumber(); ?>" required><br>
-
-        <button type="submit">Spara ändringar</button>
-    </form>
-<?php } else {?>
-    <p>Kunde inte hitta säljaren.</p>
-<?php } ?>
-
-<?php include '../partials/footer.php'; ?>
+?>
