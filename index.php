@@ -3,7 +3,6 @@ include 'partials/header.php';
 ?>
 
 <link rel="stylesheet" href="partials/header.css">
-<link rel="stylesheet" href="index.css">
 
 <h2></h2>
 
