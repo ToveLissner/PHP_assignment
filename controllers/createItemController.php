@@ -24,7 +24,6 @@ if (isset($_GET['id'])) {
 } else {
     echo "Säljar-ID saknas.";
 }
-?>
 
 
 
