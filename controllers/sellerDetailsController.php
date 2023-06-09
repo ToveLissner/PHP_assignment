@@ -37,5 +37,4 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 } else {
     echo "Ogiltigt säljar-ID.";
 }
-?>
 
