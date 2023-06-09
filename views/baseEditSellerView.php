@@ -1,5 +1,4 @@
 <?php
-
 require '../database/connection.php';
 require_once '../models/Seller.php';
 
