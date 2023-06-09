@@ -8,7 +8,7 @@ Final assignment in PHP
 
 1. Clone the project from GitHub.
 2. Install the required dependencies.
-3. To use the project, make sure to have the correct settings in `database/config.php` with accurate information about the database.
+3. Before using the project, make sure to configure the database settings in `database/config.php` with accurate information.
 4. Start the project.
 
 Please note that the database file is already included in the project and will be used automatically.
