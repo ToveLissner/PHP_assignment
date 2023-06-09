@@ -1,6 +1,7 @@
 <?php
 require '../models/Item.php';
 
+try {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['itemId'])) {
         $itemId = $_POST['itemId'];
@@ -26,8 +27,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 header("Location: ../index.php");
 exit();
-
-
-
-
-
+} catch (Exception $e) {
+    echo "Ett fel uppstod: " . $e->getMessage();
+}

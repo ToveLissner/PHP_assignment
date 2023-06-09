@@ -3,6 +3,7 @@ require '../database/connection.php';
 include_once '../models/Seller.php';
 include_once '../models/Item.php';
 
+try {
 if (isset($_GET['id']) && !empty($_GET['id'])) {
     $sellerId = $_GET['id'];
 
@@ -37,4 +38,6 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 } else {
     echo "Ogiltigt säljar-ID.";
 }
-
+} catch (Exception $e) {
+    echo "Ett fel uppstod: " . $e->getMessage();
+}

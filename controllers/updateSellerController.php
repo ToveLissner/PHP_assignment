@@ -2,30 +2,35 @@
 require '../database/connection.php';
 include '../models/Seller.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {            
-    if (isset($_POST['id'])) {
-        $sellerId = $_POST['id'];
+try {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {            
+        if (isset($_POST['id'])) {
+            $sellerId = $_POST['id'];
 
-        $seller = Seller::getSellerById($sellerId);
+            $seller = Seller::getSellerById($sellerId);
 
-        if ($seller) {
-            $seller->setFirstname($_POST['firstname']);
-            $seller->setLastname($_POST['lastname']);
-            $seller->setPhone($_POST['phone']);
+            if ($seller) {
+                $seller->setFirstname($_POST['firstname']);
+                $seller->setLastname($_POST['lastname']);
+                $seller->setPhone($_POST['phone']);
 
-            $seller->updateSeller();
+                $seller->updateSeller();
 
-            header('Location: ../views/sellerDetails.php?id=' . $sellerId);
-            exit;
+                header('Location: ../views/sellerDetails.php?id=' . $sellerId);
+                exit;
+            } else {
+                echo "Säljaren hittades inte.";         
+            }
         } else {
-            echo "Säljaren hittades inte.";         
+            echo "Säljar-ID saknas.";
         }
     } else {
-        echo "Säljar-ID saknas.";
+        echo "Otillåtet anrop.";
     }
-} else {
-    echo "Otillåtet anrop.";
+} catch (Exception $e) {
+    echo "Ett fel uppstod: " . $e->getMessage();
 }
+
 
 
 

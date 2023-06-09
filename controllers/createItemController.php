@@ -11,12 +11,16 @@ if (isset($_GET['id'])) {
             $description = filter_var($_POST['description'], FILTER_SANITIZE_SPECIAL_CHARS);
             $price = filter_var($_POST['price'], FILTER_SANITIZE_NUMBER_FLOAT);
 
+            try {
             $sql = "INSERT INTO items (description, price, seller_id) VALUES (?,?,?)";
             $statement = $pdo->prepare($sql);
             $statement->execute([$description, $price, $sellerId]);
 
             header('Location: ../views/sellerDetails.php?id=' . $sellerId);
             exit;
+            } catch (PDOException $e){
+                echo "Ett fel uppstod vid skapandet av detta objekt" . $e->getMessage();
+            }
         } else {
             echo "Beskrivning och pris saknas.";
         }
@@ -24,10 +28,3 @@ if (isset($_GET['id'])) {
 } else {
     echo "Säljar-ID saknas.";
 }
-
-
-
-
-
-
-
