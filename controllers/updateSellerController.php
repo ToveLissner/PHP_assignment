@@ -10,9 +10,13 @@ try {
             $seller = Seller::getSellerById($sellerId);
 
             if ($seller) {
-                $seller->setFirstname($_POST['firstname']);
-                $seller->setLastname($_POST['lastname']);
-                $seller->setPhone($_POST['phone']);
+                $firstname=filter_var($_POST['firstname'],FILTER_SANITIZE_SPECIAL_CHARS); 
+                $lastname=filter_var($_POST['lastname'],FILTER_SANITIZE_SPECIAL_CHARS); 
+                $phone=filter_var($_POST['phone'],FILTER_SANITIZE_SPECIAL_CHARS); 
+
+                $seller->setFirstname($firstname);
+                $seller->setLastname($lastname);
+                $seller->setPhone($phone);
 
                 $seller->updateSeller();
 
@@ -30,6 +34,7 @@ try {
 } catch (Exception $e) {
     echo "Ett fel uppstod: " . $e->getMessage();
 }
+
 
 
 
