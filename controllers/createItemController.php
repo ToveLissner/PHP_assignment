@@ -9,7 +9,7 @@ if (isset($_GET['id'])) {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (isset($_POST['description'], $_POST['price'])) {
             $description = filter_var($_POST['description'], FILTER_SANITIZE_SPECIAL_CHARS);
-            $price = filter_var($_POST['price'], FILTER_SANITIZE_NUMBER_FLOAT);
+            $price = number_format((float) str_replace(',', '.', filter_var($_POST['price'], FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION | FILTER_FLAG_ALLOW_THOUSAND)), 2, '.', '');
 
             try {
             $sql = "INSERT INTO items (description, price, seller_id) VALUES (?,?,?)";
